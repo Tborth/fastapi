@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  cargomind_config:
+    build:
+      context: .
+      dockerfile: src/Dockerfile
+    ports:
+      - "8000:8000"
+      # - "5437:5437"

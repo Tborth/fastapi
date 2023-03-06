@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+          crossorigin="anonymous">
+</head>
+<body class="bg-dark">
+{% include "aircraft.html" %}
+{% block uldscontent  %}
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/addulds/{{ activeaircraft}}/{{activecode}}" method="post">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="uldcode" placeholder="ULD Code" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="uldtype" cols="100"
+                                      placeholder="Uld Type" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="ulddesc" placeholder="Uld Desc" >
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="uldlength" placeholder="Uld Length" >
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="uldwidth" placeholder="Uld Width" >
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="uldheight" placeholder="Uld Height">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="uldtarewgt" placeholder="Uld TareWGT">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="segments" placeholder="segments">
+                        </div>
+
+                        <select name="aircraftairlines" id="airlineselect">
+                            {% for aircraft in aircraftdict.keys() %}
+                                <option value="{{ aircraft }}"> {{ aircraft}} </option>
+                            {% endfor %}
+                        </select>
+                        <button class="btn btn-primary" type="submit">
+                            Add
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <table class="table table-bordered table-hover bg-secondary">
+                <thead>
+                <tr>
+                    <th>Uld ID</th>
+                    <th>Uld Code</th>
+                    <th>Uld Type</th>
+                    <th>Operations</th>
+                </tr>
+               
+                </thead>
+                {% if  ulds%}
+                <tbody>
+                    <!-- <th>aircraft</th>
+                    <th>{{ aircraft}}</th> -->
+                {% for entry in ulds%}
+                    <tr>
+                        <td>{{ entry[0] }}</td>
+                        <td><strong>{{ entry[1]}}</strong></td>
+                        <td>{{ entry[2] }}</td>
+                        <td>
+                            <!-- <a class="{{ 'btn btn-success' if entry.status else 'btn btn-dark'}}"
+                            href="/turn/{{ entry[0] }}">
+                                Turn Status
+                            </a> -->
+                            <a class="btn btn-danger"
+                            href="/uldsDelete/{{ entry[0] }}/{{ activeaircraft}}/{{activecode}}">
+                                Delete
+                            </a>
+                            <a class="btn btn-info"
+                            href="/updateUlds/{{ entry[0] }}/{{ activeaircraft}}/{{activecode}}">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                {% endif %}
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+</hr>
+</body>
+</html>

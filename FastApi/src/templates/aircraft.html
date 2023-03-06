@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+          crossorigin="anonymous">
+</head>
+<body class="bg-dark">
+{% include "connection_success.html" %}
+{% block aircraftcontent  %}
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/addaircraft" method="post">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="aircraftname" placeholder="Aircraft Name" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="aircraftmodel" cols="100"
+                                      placeholder="Model Number" required></textarea>
+                        </div>
+                        <select name="aircraftairlines" id="airlineselect">
+                            {% for airline in airlinedict.keys() %}
+                                <option value="{{ airline }}"> {{ airline}} </option>
+                            {% endfor %}
+                        </select>
+                        <button class="btn btn-primary" type="submit">
+                            Add
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <table class="table table-bordered table-hover bg-secondary">
+                <thead>
+                <tr>
+                    <th>Aircraft Code</th>
+                    <th>Aircraft Name</th>
+                    <th>Modelnumber</th>
+                    <th>Operations</th>
+                </tr>
+               
+                </thead>
+                {% if  aircraft%}
+                <tbody>
+                    <!-- <th>aircraft</th>
+                    <th>{{ aircraft}}</th> -->
+                {% for entry in aircraft%}
+                    <tr>
+                        <td>{{ entry[0] }}</td>
+                        <td><strong>{{ entry[1]}}</strong></td>
+                        <td>{{ entry[2] }}</td>
+                        <td>
+                            <a class="{{ 'btn btn-success' if entry[0] == activeaircraft else 'btn  btn-warning'}}"
+                            href="/aircraftulds/{{ entry[0] }}/{{activecode}}">
+                                Turn Status
+                            </a>
+                            <a class="btn btn-danger"
+                            href="/aircraftDelete/{{ entry[0] }}/{{activecode}}">
+                                Delete
+                            </a>
+                            <a class="btn btn-info"
+                            href="/updateAircraft/{{ entry[0] }}/{{activecode}}">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                {% endif %}
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+</hr>
+</body>
+</html>

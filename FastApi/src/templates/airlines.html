@@ -1,0 +1,72 @@
+
+{% block content  %}
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/addairline" method="post">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="airlinecode" placeholder="Airline Code" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="airlinename" cols="100"
+                                      placeholder="Airline Name" required></textarea>
+                        </div>
+                        <button class="btn btn-primary" type="submit">
+                            Add
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <table class="table table-bordered table-hover bg-secondary">
+                <thead>
+                <tr>
+                    <th>Airline Code</th>
+                    <th>Airline Name</th>
+                    
+                    <th>Operations</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <!-- <th>aircraft</th>
+                    <th>{{ aircraft}}</th> -->
+                {% for entry in airlines%}
+
+                <tr>
+                    <td>{{ entry[0] }}</td>
+                    <td><strong>{{ entry[1]}}</strong></td>
+                    <!-- <td>{{ entry[2] }}</td> -->
+                    <td>
+                        <a class="{{ 'btn btn-success' if entry[0] == activecode  else 'btn btn-warning'}}"
+                           href="/airlineaircraft/{{ entry[0] }}">
+                            Turn Status
+                        </a>
+                        <a class="btn btn-danger"
+                           href="/airlineDelete/{{ entry[0] }}">
+                            Delete
+                        </a>
+                        <a class="btn btn-info"
+                           href="/updateAirline/{{ entry[0] }}">
+                            Edit
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,83 @@
+
+{% block connection %}
+<div class="container">
+  <div class="row">
+
+      <div class="col-md-12">
+          <div class="card">
+              <div class="card-body">
+                  <form class="form-inline" action="/connect"  method="post">
+                    <label class="sr-only" for="inlineFormInputName2">IP Address</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2"  name="ipaddress" id="inlineFormInputName2" placeholder="IP Address">
+
+                    <label class="sr-only" for="inlineFormInputGroupUsername2">Password:</label>
+                    <div class="input-group mb-2 mr-sm-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">:</div>
+                      </div>
+                      <input type="text" class="form-control" name="port" id="inlineFormInputGroupUsername2" placeholder="port">
+                    </div>
+                    <label class="sr-only" for="inlineFormInputName2">Database</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2" name="database" id="inlineFormInputName2" placeholder="Database">
+                    
+                    <label class="sr-only" for="inlineFormInputName2">Username</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2"  name="username" id="inlineFormInputName2" placeholder="Username">
+
+                    <label class="sr-only" for="inlineFormInputName2">Password</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2"  name="password" id="inlineFormInputName2" placeholder="Password">
+
+                    <!-- <div class="form-check mb-2 mr-sm-2">
+                      <input class="form-check-input" type="checkbox" id="inlineFormCheck">
+                      <label class="form-check-label" for="inlineFormCheck">
+                        Remember me
+                      </label>
+                    </div> -->
+
+                    <button id="submit" class="btn btn-danger mb-2">Connect</button>
+                  </form>
+
+                </div>
+              </div>
+          </div>       
+  </div></div>
+
+
+<!-- <div class="container">
+    <div class="row">
+
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-body">
+                    <form class="form-inline" action="/connect" method="post">
+                        <div class="form-group">
+                          <label for="ipaddress" class="">IP address</label>
+                          <input type="ipaddress" name="ipaddress" cols="100" id="ipaddress">
+                        </div>
+                        <div class="form-group">
+                          <label for="pwd" ols="100" >Password:  </label>
+                          <input type="password"  name="password" cols="100" class="form-control" id="password">
+                          <label for="database">database  </label>
+                          <input type="database"  name="database" cols="100"  class="form-control" id="database">
+                          <label for="port">port  </label>
+                          <input type="port" name="port" class="form-control" id="port">
+                        
+                        </div>
+                        <div class="checkbox">
+                          <label><input type="checkbox"> Remember me</label>
+                        </div> 
+                        <button type="submit" class="btn btn-default">Connection</button>
+                      </form>
+                </div>
+            </div>
+        </div>       
+</div> -->
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="/static/main.js"></script>
+
+{% endblock %}
+
+
+
+
+
